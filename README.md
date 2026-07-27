@@ -15,5 +15,8 @@ In any case, the current function of the app at this early stage is to simply pu
 - Create a timestamp for when a FETCH request was processed
 - Create an auto-update function to first check the last timestamp, and, if greater than 24 hours, ask the user if they'd like to update
 
+## ***"Have you used AI to produce this?"***
+
+Great question.  AI has been assisting me with the design concept, but I've been trying to write the code myself.  Being a Junior, I learn best by having hands-on experience, and through repetition.  That being said, AI is great for idea-building and bouncing ideas off of.  I just don't feel comfortable yet allowing it to write the "boilerplate" that I'm still learning off of.
 
 As new features are added, I'll be changing this README to reflect that, as well as any other additions to the roadmap as the project evolves.  Cheers!  :)
