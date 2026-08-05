@@ -97,8 +97,16 @@ def main():
 
     print(f"Found {len(results)} cards legal in Commander.")
 
+    """
+    I was noticing some duplicates in the card name
+    results, so I decided to add a multiverse ID to
+    the results, as well.  As I suspected, some cards
+    have double-printings (foil versions, etc.), and
+    as a result, have no multiverse ID.
+    """
     for card in results:
-        print(card["name"])
+        multiverse_id = card.get("multiverseid", "None")
+        print(f"{card['name']}, {multiverse_id}")
 
 # This acts as a guard, so the program doesn't run
 # Unless it is specifically called to run.
