@@ -10,8 +10,8 @@ So, I've begun writing a program for him which will do just that.  As luck would
 In any case, the current function of the app at this early stage is to simply pull the first 100 cards from the Gatherer API, and then to save those contents (a list of dictionaries) into a locally-stored JSON file (data/cards.json).    From this point, the roadmap looks like this:
 
 - Fetch ALL cards to JSON (so that data is available, even offline) [Completed 7/29/2026]
-- Create a format with relevant data from each entry (i.e., "Name", "Color", "Cost", "Legalities", etc.).
-- Create a search function for the list
+- Create a format with relevant data from each entry (i.e., "Name", "Color", "Cost", "Legalities", etc.). [First Draft Completed 7/29/2026]
+- Create a search function for the list [First Draft Completed 8/5/2026]
 - Create a timestamp for when a FETCH request was processed
 - Create an auto-update function to first check the last timestamp, and, if greater than 24 hours, ask the user if they'd like to update
 
