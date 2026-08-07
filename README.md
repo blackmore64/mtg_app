@@ -11,7 +11,9 @@ In any case, the current function of the app at this early stage is to simply pu
 
 - Fetch ALL cards to JSON (so that data is available, even offline) [Completed 7/29/2026]
 - Create a format with relevant data from each entry (i.e., "Name", "Color", "Cost", "Legalities", etc.). [First Draft Completed 7/29/2026]
-- Create a search function for the list [First Draft Completed 8/5/2026]
+- Create a search function for the list
+[First Draft Completed 8/5/2026]
+[Second Draft Completed 8/7/2026]
 - Create a timestamp for when a FETCH request was processed
 - Create an auto-update function to first check the last timestamp, and, if greater than 24 hours, ask the user if they'd like to update
 

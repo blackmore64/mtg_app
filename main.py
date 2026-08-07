@@ -2,22 +2,15 @@ from src.api.mtg_api import fetch_cards
 from src.storage.json_storage import save_cards, load_cards
 
 
-"""
-Creating the beginnings of a basic search function
-here, which will begin looking for various legalities
-for various formats.  As I continue, this is going to
-become more robust, and will eventually rely on user
-input, rather than these static testing values.
-"""
-def search_cards(play_format):
-        cards = load_cards(filename="data/cards.json")
+# Cleaning up the function name to be more specific.
+# (search_cards_by_format() vs. search_cards()).
+def search_cards_by_format(cards, play_format):
 
         """
-        Here, I'm creating the beginnings of a search
-        function, which will return the names of any
+        Here, I've made a user-input function,
+        which will return the names of any
         cards in the JSON which are legal in a given
-        play format.  This will be changed later to
-        accept user input, making it more dynamic.
+        play format.
 
         Currently, it's using "any" to create a boolean
         search, which will return True for a given card
@@ -57,45 +50,17 @@ def main():
     #save_cards(cards)
 
     loaded_cards = load_cards(filename="data/cards.json")
-
-    # Also commenting out this section temporarily,
-    # As I currently just want the results from the
-    # Newly-created search function to return.
-    """
-    # Creating a variable here, for shortening purposes.
-    cards = loaded_cards
-
-    print(f"Loaded {len(loaded_cards)} cards from data/cards.json")
     
-    print("First Card:")
-    print(f"Name: {cards[0]['name']}")
-    print(f"Colors: {cards[0]['colors']}")
-    print(f"Converted Mana Cost: {cards[0]['cmc']}")
-    print(f"Power: {cards[0]['power']}")
-    print(f"Toughness: {cards[0]['toughness']}")
-    if 'supertypes'in cards[0]:
-        print(f"Supertypes: {cards[0]['supertypes']}")
-    else:
-        print("Supertypes: None")
-    print(f"Subtypes: {cards[0]['subtypes']}")
-    print(f"Types: {cards[0]['types']}")
-    print(f"Set: {cards[0]['set']}")
-    print("Legalities:")
-    
-    So, for this next step, we're dealing with the
-    'legalities' dictionary, which looks like this:
-    {'format': 'Commander', 'legality': 'legal'}
+    # Adding .title() here, to allow for lower-case input.
+    search = input("Please enter a play format to search "
+    "for legal cards: ").title()
 
-    So, we're going to be using a FOR loop to iterate
-    through the various play formats and print them,
-    along with their corresponding legality status.
-    
-    for legality in cards[0]['legalities']:
-        print(f"{legality['format']}: {legality['legality']}")
-    """
-    results = search_cards("Commander")
+    if search not in ["Standard", "Modern", "Legacy", "Vintage", "Commander"]:
+        print("Invalid input. Please enter a valid play format.")
+        return
+    results = search_cards_by_format(loaded_cards, search)
 
-    print(f"Found {len(results)} cards legal in Commander.")
+    print(f"Found {len(results)} cards legal in {search}.")
 
     """
     I was noticing some duplicates in the card name
@@ -104,8 +69,12 @@ def main():
     have double-printings (foil versions, etc.), and
     as a result, have no multiverse ID.
     """
+    # Some card variants (foils, etc.) don't have
+    # a multiverse ID, so I'm using .get() here
+    # to check for an ID, and return no value if none
+    # exists.
     for card in results:
-        multiverse_id = card.get("multiverseid", "None")
+        multiverse_id = card.get("multiverseid")
         print(f"{card['name']}, {multiverse_id}")
 
 # This acts as a guard, so the program doesn't run
